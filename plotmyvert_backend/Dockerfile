@@ -18,6 +18,6 @@ RUN pip install -r requirements.txt
 # Copy project
 COPY . /code/
 
-EXPOSE 8000
+EXPOSE 8001
 # Run the application
-CMD ["gunicorn", "plotmyvert_backend.wsgi:application", "--bind", "0.0.0.0:8000", "--access-logfile", "-", "--error-logfile", "-"]
+CMD ["gunicorn", "plotmyvert_backend.wsgi:application", "--bind", "0.0.0.0:8001", "--access-logfile", "-", "--error-logfile", "-"]

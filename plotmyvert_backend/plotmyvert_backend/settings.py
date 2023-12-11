@@ -32,6 +32,9 @@ else:
     ALLOWED_HOSTS = ['vert.duz.ie']
     CSRF_TRUSTED_ORIGINS = ['https://vert.duz.ie']
     CORS_ALLOWED_ORIGINS = ['https://vert.duz.ie']
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
     LOGGING = {
         'version': 1,
         'disable_existing_loggers': False,
@@ -52,9 +55,6 @@ else:
             },
         },
     }
-# TODO: Maybe:
-# CSRF_COOKIE_SECURE = not DEBUG
-# SESSION_COOKIE_SECURE = not DEBUG
 
 # Application definition
 

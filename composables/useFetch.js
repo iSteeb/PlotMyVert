@@ -2,7 +2,7 @@ export default async function (endpoint, method, headers = null, body = null) {
   const baseURL =
     window.location.hostname === 'vert.duz.ie'
       ? 'https://vert.duz.ie'
-      : 'http://127.0.0.1:8000';
+      : 'http://127.0.0.1:8001';
   const url = `${baseURL}/api/v1/${endpoint}/`;
 
   try {
