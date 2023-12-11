@@ -1,6 +1,9 @@
 export default async function (endpoint, method, headers = null, body = null) {
-  // const url = `http://127.0.0.1:8000/api/v1/${endpoint}/`;
-  const url = `https://vert.duz.ie/api/v1/${endpoint}/`;
+  const baseURL =
+    window.location.hostname === 'vert.duz.ie'
+      ? 'https://vert.duz.ie'
+      : 'http://127.0.0.1:8000';
+  const url = `${baseURL}/api/v1/${endpoint}/`;
 
   try {
     let options = {

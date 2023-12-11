@@ -23,34 +23,38 @@ PLOTMYVERT_BACKEND_DEVELOPMENT_KEY = 'django-insecure--2!j34xs%rv#v6-f9t_v_5_(c4
 SECRET_KEY = os.environ.get('PLOTMYVERT_BACKEND_SECRET_KEY', PLOTMYVERT_BACKEND_DEVELOPMENT_KEY)
 DEBUG = SECRET_KEY == PLOTMYVERT_BACKEND_DEVELOPMENT_KEY
 print('DEBUG:', DEBUG)
-ALLOWED_HOSTS = ['vert.duz.ie', 'localhost', '127.0.0.1', '[::1]']
-CSRF_TRUSTED_ORIGINS = ['https://vert.duz.ie', 'http://localhost:3000', 'http://127.0.0.1:3000']
-CORS_ALLOWED_ORIGINS = ['https://vert.duz.ie', 'http://localhost:3000', 'http://127.0.0.1:3000']
+
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+    CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:3000']
+    CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:3000']
+else:  
+    ALLOWED_HOSTS = ['vert.duz.ie']
+    CSRF_TRUSTED_ORIGINS = ['https://vert.duz.ie']
+    CORS_ALLOWED_ORIGINS = ['https://vert.duz.ie']
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+            },
+        },
+        'root': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['console'],
+                'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+                'propagate': False,
+            },
+        },
+    }
 # TODO: Maybe:
 # CSRF_COOKIE_SECURE = not DEBUG
 # SESSION_COOKIE_SECURE = not DEBUG
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'root': {
-        'handlers': ['console'],
-        'level': 'DEBUG',
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-            'propagate': False,
-        },
-    },
-}
-
 
 # Application definition
 
