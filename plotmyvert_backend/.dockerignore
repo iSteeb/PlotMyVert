@@ -17,3 +17,9 @@ Dockerfile
 # Ignore Poetry files
 poetry.lock
 pyproject.toml
+
+# Ignore .python-version file
+.python-version
+
+# Ignore database files
+*.sqlite3

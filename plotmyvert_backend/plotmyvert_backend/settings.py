@@ -28,7 +28,7 @@ if DEBUG:
     CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:3000']
     CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:3000']
 else:  
-    ALLOWED_HOSTS = ['vert.duz.ie']
+    ALLOWED_HOSTS = ['vert.duz.ie', 'http://127.0.0.1']
     CSRF_TRUSTED_ORIGINS = ['https://vert.duz.ie']
     CORS_ALLOWED_ORIGINS = ['https://vert.duz.ie']
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
