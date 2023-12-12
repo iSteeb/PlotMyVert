@@ -18,10 +18,6 @@ RUN pip install -r requirements.txt
 # Copy project
 COPY . /code/
 
-# Copy db.sqlite3 file
-ARG DB_PATH
-COPY ${DB_PATH} /code/
-
 EXPOSE 8000
 # Run the application
 CMD ["gunicorn", "plotmyvert_backend.wsgi:application", "--bind", "0.0.0.0:8000", "--access-logfile", "-", "--error-logfile", "-"]
