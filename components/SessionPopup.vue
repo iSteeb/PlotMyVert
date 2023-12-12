@@ -15,8 +15,6 @@
   </div>
 </template>
 
-<!-- TODO: Get a session from the datetime, and then get all jumps for that session -->
-<!-- TODO: Make session into a clickable popup instead??? -->
 <script setup>
 const props = defineProps({
   session: {
