@@ -1,10 +1,9 @@
 export default async function (endpoint, method, headers = null, body = null) {
-  const baseURL =
-    window.location.hostname === 'vert.duz.ie'
-      ? 'https://vert.duz.ie'
-      : 'http://127.0.0.1:8001';
+  const baseURL = import.meta.env.VITE_BASE_URL || 'https://vert.duz.ie';
   const url = `${baseURL}/api/v1/${endpoint}/`;
-
+  console.log(import.meta.env.VITE_BASE_URL + '/api/v1/' + endpoint + '/');
+  // const url = 'http://127.0.0.1:8000/api/v1/' + endpoint + '/';
+  console.log(url);
   try {
     let options = {
       method: method,
@@ -19,11 +18,10 @@ export default async function (endpoint, method, headers = null, body = null) {
       options.body = JSON.stringify(body);
     }
     const response = await fetch(url, options);
-    console.log(response);
     const data = ref(await response.json());
+    console.log(data.value);
     return data;
   } catch (error) {
-    console.error('Error:', error);
     throw error;
   }
 }

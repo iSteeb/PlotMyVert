@@ -1,4 +1,4 @@
 export default async function () {
-  const data = await useFetch('checkLoginStatus', 'GET');
+  const data = await apiFetch('checkLoginStatus', 'GET');
   return data.value.isLoggedIn;
 }

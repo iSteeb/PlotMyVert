@@ -22,7 +22,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 PLOTMYVERT_BACKEND_DEVELOPMENT_KEY = 'django-insecure--2!j34xs%rv#v6-f9t_v_5_(c4zsy7r0%1f4r2%xl$vux-5iv('
 SECRET_KEY = os.environ.get('PLOTMYVERT_BACKEND_SECRET_KEY', PLOTMYVERT_BACKEND_DEVELOPMENT_KEY)
 DEBUG = SECRET_KEY == PLOTMYVERT_BACKEND_DEVELOPMENT_KEY
-print('DEBUG:', DEBUG)
 
 if DEBUG:
     ALLOWED_HOSTS = ['*']
@@ -55,6 +54,11 @@ else:
             },
         },
     }
+    
+print('DEBUG:', DEBUG)
+print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
+print("CSRF_TRUSTED_ORIGINS:", CSRF_TRUSTED_ORIGINS)
+print("CORS_ALLOWED_ORIGINS:", CORS_ALLOWED_ORIGINS)
 
 # Application definition
 

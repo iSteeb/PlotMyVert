@@ -38,7 +38,7 @@ async function getAllSessions() {
       '$1'
     )
   };
-  const data = await useFetch('getAllSessions', 'POST', headers, null);
+  const data = await apiFetch('getAllSessions', 'POST', headers, null);
   return data.value;
 }
 
@@ -60,7 +60,7 @@ async function getSessionJumps(session) {
   const body = {
     start_datetime: session.start_datetime
   };
-  const data = await useFetch('getJumpsFromSession', 'POST', headers, body);
+  const data = await apiFetch('getJumpsFromSession', 'POST', headers, body);
   if (data.value.success) {
     return data.value.jumps;
   }

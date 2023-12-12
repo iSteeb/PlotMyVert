@@ -52,6 +52,7 @@
 </template>
 
 <script setup>
+const baseURL = ref(process.env.BASE_URL || 'https://vert.duz.ie');
 const isLoggedIn = useState('isLoggedIn');
 let showLoginPopup = ref(false);
 let showSignupPopup = ref(false);
@@ -83,7 +84,7 @@ function clearFields() {
 }
 
 async function login() {
-  const csrfSet = await useFetch('setCsrfCookie', 'GET');
+  const csrfSet = await apiFetch('setCsrfCookie', 'GET');
   if (!csrfSet.value.success) {
     return;
   }
@@ -99,7 +100,7 @@ async function login() {
     email: emailInput.value,
     password: passwordInput.value
   };
-  const data = await useFetch('userLogin', 'POST', headers, body);
+  const data = await apiFetch('userLogin', 'POST', headers, body);
   if (data.value.success) {
     updateLoginStatus();
     closePopups();
@@ -107,7 +108,7 @@ async function login() {
   }
 }
 async function signup() {
-  const csrfSet = await useFetch('setCsrfCookie', 'GET');
+  const csrfSet = await apiFetch('setCsrfCookie', 'GET');
   if (!csrfSet.value.success) {
     return;
   }
@@ -123,13 +124,13 @@ async function signup() {
     email: emailInput.value,
     password: passwordInput.value
   };
-  const data = await useFetch('signup', 'POST', headers, body);
+  const data = await apiFetch('signup', 'POST', headers, body);
   if (data.value.success) {
     login();
   }
 }
 async function logout() {
-  const data = await useFetch('userLogout', 'GET');
+  const data = await apiFetch('userLogout', 'GET');
   if (data.value.success) {
     updateLoginStatus();
     closePopups();
@@ -152,7 +153,7 @@ async function configure() {
     port: portInput.value,
     ssl: sslInput.value
   };
-  const data = await useFetch('configure', 'POST', headers, body);
+  const data = await apiFetch('configure', 'POST', headers, body);
   if (data.value.success) {
     closePopups();
     clearFields();

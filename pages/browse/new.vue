@@ -30,7 +30,7 @@ async function fetchNewSessions() {
       '$1'
     )
   };
-  const data = await useFetch('getNewSessionsFromEmail', 'POST', headers, null);
+  const data = await apiFetch('getNewSessionsFromEmail', 'POST', headers, null);
   return data.value;
 }
 
@@ -52,7 +52,7 @@ async function getActiveSessionJumps() {
   const body = {
     start_datetime: activeSession.value.start_datetime
   };
-  const data = await useFetch('getJumpsFromSession', 'POST', headers, body);
+  const data = await apiFetch('getJumpsFromSession', 'POST', headers, body);
   if (data.value.success) {
     return data.value.jumps;
   }
