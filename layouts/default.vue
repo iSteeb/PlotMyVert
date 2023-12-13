@@ -52,7 +52,6 @@
 </template>
 
 <script setup>
-const baseURL = ref(process.env.BASE_URL || 'https://vert.duz.ie');
 const isLoggedIn = useState('isLoggedIn');
 let showLoginPopup = ref(false);
 let showSignupPopup = ref(false);

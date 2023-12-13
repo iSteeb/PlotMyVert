@@ -76,4 +76,5 @@ db.sqlite3
 # Sphinx documentation
 docs/_build/
 
-docker.sh
+snippets.sh
+ecosystem.config.cjs
