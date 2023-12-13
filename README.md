@@ -99,7 +99,8 @@ docker build . -t "plotmyvert_backend"
 
 remove previous container
 
-```docker rm "plotmyvert_backend" -f
+```
+docker rm "plotmyvert_backend" -f
 
 ```
 
