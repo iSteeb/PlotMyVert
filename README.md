@@ -1,6 +1,24 @@
-# PlotMyVert
+# PlotMyVert - A Vertical Jump Tracking Application
 
-A much better way to save, track, view and plot vertical jump history (from the G-Vert device).
+Welcome to the Vert Performance Tracker, a comprehensive full-stack application designed exclusively for athletes using the G-Vert device (https://www.myvert.com). This application is your one-stop solution for tracking, analyzing, and visualizing your jump data in a way that's more advanced and accessible than ever before.
+
+The Vert is an innovative tool for athletes to track their jumps during training, but the original mobile application for the Vert offers a subscription model for advanced features, and it lacks the advanced graphing capabilities and online access that this application provides.
+
+With PlotMyVert, you can easily import your data from the Vert device. Simply use the mobile application to export your data by emailing it to yourself. This is currently the only way to extract data from the device's closed system. Once you've done this, configure your PlotMyVert account with your email login. Our application is designed to read only emails titled "Session Data to Open in Excel" and containing Excel file(s). This data is then imported into the database under your account and stored securely.
+
+You can run this application locally, on your own server, or access my instance at https://vert.duz.ie - just create an account and start importing your data!
+
+Email Configuration is as follows:
+receive_email_login: the login username/email for the email account that will receive the data
+receive_email_password: the password for the email account that will receive the data
+receive_email_receiver: the email address that will receive the data (usually the same as receive_email_login, however services like hidemyemail can be used to hide your real email address but still work with this application)
+mail_server: the mail server for the email account that will receive the data (e.g. imap.gmail.com)
+mail_port: the mail port for the email account that will receive the data (e.g. 993)
+mail_SSL: whether or not the mail server uses SSL
+
+Consult your own service provider for the correct configuration for your email account.
+
+Email configuration must be complete to use this application as it is the only way that you can access data from the Vert device outside of the native application. The application filters emails by subject (Session Data to Open in Excel) and receiver (the email you set up above). The application does not read any other emails. The application will delete the data email from your account after it has beene processed and imported into the database.
 
 ## 1.0 Development
 
@@ -29,6 +47,7 @@ pyenv local plotmyvert_backend
 pyenv version
 // should return plotmyvert_backend (set by $PATH_TO_BACKEND/.python-version)
 pip install -r requirements.txt
+mkdir db
 python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser
@@ -52,9 +71,6 @@ docker build . -t "plotmyvert_backend"
 docker rm "plotmyvert_backend" -f
 // remove untagged images (from previous builds)
 docker image prune -f
-// run container (Dockerfile exposes on port 8001) in debug mode for local deployment (simple)
-// debug mode allows local deployment without SSL / HTTPS but is insecure for public deployment
-docker run -d -p 8000:8000 --name "plotmyvert_backend" plotmyvert_backend
 
 #### 2.2.2 Docker Run
 
